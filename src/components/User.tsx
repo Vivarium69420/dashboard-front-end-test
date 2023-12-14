@@ -1,4 +1,3 @@
-import React from "react";
 import { IUsers } from "../models/IUser";
 
 type Props = {

@@ -14,9 +14,9 @@ const useAxios = (
   const [response, setResponse] = useState([]);
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState(true);
-  const [reload, setReload] = useState(0);
+  const [reload, setReload] = useState(false);
 
-  const refetch = () => setReload((prev) => prev + 1);
+  const refetch = () => setReload((prev) => !prev);
 
   useEffect(() => {
     //let isMounted = true;
@@ -48,7 +48,7 @@ const useAxios = (
     // eslint-disable-next-line
   }, [reload]);
 
-  return [response, error, loading, refetch];
+  return [response, error, loading, refetch] as const;
 };
 
 export default useAxios;
