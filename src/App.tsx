@@ -1,9 +1,13 @@
-import Users from "./components/Users";
+import Login from "./components/Login";
+import Register from "./components/Register";
+
 
 function App() {
   return (
     <div>
-      <Users />
+      <Register /> 
+      <hr />
+      <Login />
     </div>
   );
 }
