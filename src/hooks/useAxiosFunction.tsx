@@ -9,7 +9,11 @@ type ConfigType = {
 };
 
 const useAxiosFunction = () => {
-  const [response, setResponse] = useState([]);
+  const [response, setResponse] = useState({
+    data: "",
+    status: 0,
+    statusText: "",
+  });
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState(false);
   const [controller, setController] = useState<AbortController>();
@@ -24,10 +28,14 @@ const useAxiosFunction = () => {
         method,
         url,
         ...requestConfig,
-        signal: AbortSignal.timeout(5000),
+        signal: AbortSignal.timeout(50000),
       });
       console.log(res);
-      setResponse(res.data);
+      setResponse({
+        data: res.data,
+        status: res.status,
+        statusText: res.statusText,
+      });
     } catch (err: any) {
       console.log(err.message);
       setError(err.message);
@@ -37,11 +45,10 @@ const useAxiosFunction = () => {
   };
 
   useEffect(() => {
-    console.log();
     return () => controller && controller.abort();
   }, [controller]);
 
   return [response, error, loading, axiosFetch] as const;
-  };
+};
 
 export default useAxiosFunction;
