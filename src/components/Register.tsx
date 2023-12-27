@@ -1,4 +1,4 @@
-import dashboardAI from "../api/dashboardAI.ts";
+import dashboardAI from "../api/DashboardAI.ts";
 import useAxiosFunction from "../hooks/useAxiosFunction.tsx";
 const Register = () => {
   const [response, error, loading, axiosFetch] = useAxiosFunction();
@@ -7,7 +7,7 @@ const Register = () => {
     axiosFetch({
       axiosInstance: dashboardAI,
       method: "post",
-      url: "/users",
+      url: "/users/create",
       requestConfig: {
         data: {
           username: form.username.value,
